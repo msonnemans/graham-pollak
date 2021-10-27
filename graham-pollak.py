@@ -3,8 +3,6 @@ import math
 def f(n):
     if n == 1:
         return 0
-    if n == 2:
-        return 1
     return 1 + f(math.floor(n/2)) + f(math.ceil(n/2))
 
 
