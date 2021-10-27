@@ -45,8 +45,8 @@ If we prove that f(n) = n-1 we will prove the Graham-Pollak Theorem.
 Base: for n=0 and n=1 f(n) = n-1 is trivial.
 Hypothesis: We assume that f(n) holds for any n. f(n) = n-1.
 Induction step: We will prove that f(n+1) = n-1+1=n.
-For both cases when n is even or not even, f(n+1) will result in the third line being of form 1 + f((n+1)/2) + f((n/2) + 1). 
-Applying the hypothesis gives 1 + ((n+1)/2)-1 + (((n+1)/2))-1 = ((n+1)/2) + ((n+1)/2) - 1 = n+1-1 = n. Thus we proved the hypothesis.
+For both cases when n is even or not even, f(n+1) will result in the third line being of form 1 + f((n+1)/2) + f((n+1)/2). 
+Applying the hypothesis gives 1 + ((n+1)/2)-1 + (((n+1)/2))-1 = ((n+1)/2) + ((n+1)/2)-1 = n+1-1 = n. Thus we proved the hypothesis.
 Q.E.D.
 
 It has been years since I've done an inductive proof so if there's anything wrong with my reasoning I'm willing to bet that it's there. I'm for the rest pretty convinced that proving f(n) = n-1 will be an elegant proof for the Graham-Pollak theorem.
