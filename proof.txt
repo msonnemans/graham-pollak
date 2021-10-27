@@ -1,0 +1,52 @@
+The goal is to reach a configuration where each nation has fought each other nation exactly once in as few steps as possible.
+
+Lemma I: If the amount of connections at each battle is maximized, the amount of battles requiered to reach the configuration is minimized.
+
+Given n nations in an initial state, the maximum amount of connections from a single battle is ⌊n/2⌋ * ⌈n/2⌉.
+
+Proof: The problem is anologous to finding the maximum surface area of a rectangle of which the length and height sum to n.
+When we have 6 nations: AxBCDEF gives 1*6 connections. ABxCDEF gives 2*4=8 connections. The amount of connections is maximized when (nearly) half of the nations are battling the other half. In this case that would be ABCxDEF which is 3*3=9 connections.
+
+We observe that when the maximum amount of connections are made, the nations on one team are only left to battle it out with eachother while the team on the right needs to do the same. We have essentially created 2 islands on which more battling needs to take place.
+This is similar to how in @ViBe's proof the biggest possible rectangle would split the staircase shape into two little staircases.
+
+Here is the kicker: The newly formed team islands itself are new instances of the same problem.
+
+Example:
+Given that we battled ABCxDEF we are left with connections to be made between ABC and between DEF.
+These connections can be made as if ABC was a graph of just 3 nations.
+
+We can continue recursively for every team. So for ABC we will battle the nations according to our rule of maximizing connections: AxBC (note that this is equal to ABxC, it does not matter in this case).
+Since A is singled out on one side it has battled every other nation.
+AB still have to battle between eachother so we get the battle AxB.
+
+A recursive algorithm can describe the process we just walked through.
+
+Given n nodes, the function f gives the minimum amount of battles needed to reach the configuration:
+
+f(n) = 
+    0 if n=1
+    1 if n=2
+    1 + f(⌊n/2⌋) + f(⌈n/2⌉) in all other cases
+
+Illustration to get some feel for the recursivity:
+
+4
+1 + (2 + 2)
+1 + (1 + 1) = 3
+
+7
+1 + (3 + 4)
+1 + ((1 + 2) + (1 + (2 + 2))
+1 + ((1 + 1) + (1 + (1 + 1)) = 6
+
+If we prove that f(n) = n-1 we will prove the Graham-Pollak Theorem.
+
+Base: for n=0 and n=1 f(n) = n-1 is trivial.
+Hypothesis: We assume that f(n) holds for any n. f(n) = n-1.
+Induction step: We will prove that f(n+1) = n-1+1=n.
+For both cases when n is even or not even, f(n+1) will result in the third line being of form 1 + f((n+1)/2) + f((n/2) + 1). 
+Applying the hypothesis gives 1 + ((n+1)/2)-1 + (((n+1)/2))-1 = ((n+1)/2) + ((n+1)/2) - 1 = n+1-1 = n. Thus we proved the hypothesis.
+Q.E.D.
+
+It has been years since I've done an inductive proof so if there's anything wrong with my reasoning I'm willing to bet that it's there. I'm for the rest pretty convinced that proving f(n) = n-1 will be an elegant proof for the Graham-Pollak theorem.
