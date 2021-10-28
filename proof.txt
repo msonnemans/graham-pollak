@@ -48,7 +48,7 @@ Illustration to get some feel for the recursivity:
 
 If we prove that f(n) = n-1 we will prove the Graham-Pollak Theorem.
 
-Base: for n=0 f(n) = n-1 is trivial.
+Base: for n=1 f(n) = n-1 is trivial.
 Hypothesis: We assume that f(n) holds for any n. f(n) = n-1.
 Induction step: We will prove that f(n+1) = n-1+1=n.
 In all cases, f(n+1) will result in the second line being of form 1 + f((n+1)/2) + f((n+1)/2). 
